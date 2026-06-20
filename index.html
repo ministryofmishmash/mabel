@@ -14,6 +14,7 @@
     font-family: 'Manrope', system-ui, sans-serif;
     background: linear-gradient(180deg, #140d22 0%, #2e1f44 8%, #675181 22%, #463A78 55%, #1C1738 100%);
     min-height: 100vh;
+    overflow-x: hidden;
     color: #F3EFEA;
   }
 
@@ -41,11 +42,18 @@
     padding: 0 24px;
   }
 
-  nav {
+  nav { display: flex; }
+
+  .site-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 28px 0 0;
+    padding: 28px 24px 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
   }
 
   .nav-logo {
@@ -74,10 +82,9 @@
   }
 
   .mascot {
-    width: 100vw;
+    width: 100%;
     height: auto;
     display: block;
-    margin-left: calc(-50vw + 50%);
     margin-bottom: 8px;
     -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 82%, transparent 100%);
     mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 82%, transparent 100%);
@@ -135,6 +142,11 @@
 
   @media (max-width: 480px) {
     .features { grid-template-columns: 1fr; }
+    .mascot {
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      object-position: center 35%;
+    }
   }
 
   .feature {
@@ -278,16 +290,17 @@
 <canvas id="pixel-reveal"></canvas>
 <div class="bg-glow"></div>
 
-<div class="wrap">
-  <nav>
-    <span class="nav-logo">Mabel</span>
-    <a href="#privacy" class="nav-link">Privacy policy</a>
-  </nav>
+<nav class="site-nav">
+  <span class="nav-logo">Mabel</span>
+  <a href="#privacy" class="nav-link">Privacy policy</a>
+</nav>
 
+<video class="mascot" autoplay loop muted playsinline>
+  <source src="mabel-hero-compressed.mp4?v=3" type="video/mp4">
+</video>
+
+<div class="wrap">
   <section class="hero">
-    <video class="mascot" autoplay loop muted playsinline>
-      <source src="mabel-hero-compressed.mp4?v=3" type="video/mp4">
-    </video>
     <h1 class="hero-title">Meet Mabel</h1>
     <p class="hero-sub">Earn a marble for every day you show up. Mabel will guard it for you.</p>
     <a href="#" class="app-btn">
